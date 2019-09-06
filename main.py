@@ -1,7 +1,9 @@
 from theobserver import Observer
 from glob import glob
-import argparse
 import joblib
+
+from gui.app import Application
+import tkinter as tk
 
 
 def main(args):
@@ -25,27 +27,9 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    root = tk.Tk()
 
-    parser.add_argument("-d", "--dataset",
-                        dest="dataset_path",
-                        required=True,
-                        help="Dataset's relative/absolute path.")
-
-    parser.add_argument("-t", "--target",
-                        dest="target_i",
-                        default=-1,
-                        help="Target's column number.")
-
-    parser.add_argument("-e", "--header",
-                        dest="header",
-                        default=None,
-                        help="Header's index number.")
-
-    parser.add_argument("-c", "--col",
-                        dest="index_col",
-                        default=None,
-                        help="Index's column number.")
-
-    arguments = parser.parse_args()
-    main(arguments)
+    app = Application(master=root, width=1200, height=600)
+    app.master.title("Aggregation Method Predictor")
+    app.master.size()
+    app.mainloop()
