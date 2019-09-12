@@ -29,7 +29,7 @@ def main(args):
 if __name__ == "__main__":
     root = tk.Tk()
 
-    app = Application(master=root, width=1200, height=600)
+    app = Application(master=root, width=800, height=650)
     app.master.title("Aggregation Method Predictor")
     app.master.size()
     app.mainloop()
