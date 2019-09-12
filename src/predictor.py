@@ -2,6 +2,8 @@ from src.utils import chars_names
 from theobserver import Observer
 from glob import glob
 import joblib
+import sys
+import os
 
 
 class Predictor:
@@ -16,7 +18,15 @@ class Predictor:
         return dict(zip(chars_names(), self.chars))
 
     def predict(self):
-        regressors_path = glob('regressors/*.joblib')
+        try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        path = os.path.join(base_path, 'regressors/*.joblib')
+
+        regressors_path = glob(path)
         predictions = []
 
         for regressor_path in regressors_path:

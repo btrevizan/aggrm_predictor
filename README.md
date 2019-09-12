@@ -14,7 +14,6 @@ The research's results can be found at
 [https://github.com/btrevizan/distributed_classifier](https://github.com/btrevizan/distributed_classifier).
 
 
-
 ## Command line usage
 ```
 usage: main.py [-h] -d DATASET_PATH [-t TARGET_I] [-e HEADER] [-c INDEX_COL]
@@ -38,46 +37,77 @@ $ python3 main.py -d examples/credit_last.csv
 ```
 outputs:
 ```
-1. (0.792) arb_mdic_dtree
-2. (0.725) cmb_mlp
-3. (0.724) cmb_knn
-4. (0.709) cmb_svc
-5. (0.708) simpson
-6. (0.694) cmb_gnb
-7. (0.691) scf
-8. (0.677) arb_md_mlp
-9. (0.676) arb_mdic_mlp
-10. (0.672) arbmdi
-11. (0.672) arbmdic
-12. (0.67) arb_md_gnb
-13. (0.67) cmb_dtree
-14. (0.662) arb_mdic_knn
-15. (0.659) borda
-16. (0.657) classif
-17. (0.655) plurality
-18. (0.655) vote
-19. (0.646) dowdall
-20. (0.645) median
-21. (0.633) dtree
-22. (0.62) cmb
-23. (0.615) arbmd
-24. (0.613) math
-25. (0.593) arb_md_svc
-26. (0.592) arb_mdi_knn
-27. (0.578) gnb
-28. (0.569) knn
-29. (0.547) mean
-30. (0.537) mlp
-31. (0.535) arb_md_dtree
-32. (0.529) copeland
-33. (0.525) svc
-34. (0.522) arb_mdi_gnb
-35. (0.508) arb_mdi_dtree
-36. (0.506) arb_md_knn
-37. (0.501) arb_mdi_svc
-38. (0.494) arb_mdic_svc
-39. (0.464) arb_mdic_gnb
-40. (0.437) arb_mdi_mlp
+Extracting dataset credit_last.csv's characteristics... Done.
+==================================================================
+Number of Instances           690
+Number of Features            589
+Number of Targets             2
+Silhouette coefficient        0.174
+Imbalance coefficient         0.991
+Number of binary features     585
+Majority class size           383
+Minority class size           307
+==================================================================
+Predicting ranking... Done.
+============================ Ranking =============================
+Position Aggregation Method               Mean F1-Score predicted
+    1    Arbiter MDIC DTREE               0.792
+    2    Combiner MLP                     0.725
+    3    Combiner KNN                     0.724
+    4    Combiner SVC                     0.709
+    5    Social Choice Function Simpson   0.708
+    6    Combiner GNB                     0.694
+    7    Social Choice Functions          0.691
+    8    Arbiter MD MLP                   0.677
+    9    Arbiter MDIC MLP                 0.676
+   10    Arbiter MDI                      0.672
+   11    Arbiter MDIC                     0.672
+   12    Arbiter MD GNB                   0.67
+   13    Combiner DTREE                   0.67
+   14    Arbiter MDIC KNN                 0.662
+   15    Social Choice Function Borda     0.659
+   16    Base classifiers                 0.657
+   17    Plurality                        0.655
+   18    Plurality                        0.655
+   19    Social Choice Function Dowdall   0.646
+   20    Arithmetic-based Median          0.645
+   21    Base Classifier DTREE            0.633
+   22    Combiners                        0.62
+   23    Arbiter MD                       0.615
+   24    Arithmetic-based                 0.613
+   25    Arbiter MD SVC                   0.593
+   26    Arbiter MDI KNN                  0.592
+   27    Base Classifier GNB              0.578
+   28    Base Classifier KNN              0.569
+   29    Arithmetic-based Mean            0.547
+   30    Base Classifier MLP              0.537
+   31    Arbiter MD DTREE                 0.535
+   32    Social Choice Function Copeland  0.529
+   33    Base Classifier SVC              0.525
+   34    Arbiter MDI GNB                  0.522
+   35    Arbiter MDI DTREE                0.508
+   36    Arbiter MD KNN                   0.506
+   37    Arbiter MDI SVC                  0.501
+   38    Arbiter MDIC SVC                 0.494
+   39    Arbiter MDIC GNB                 0.464
+   40    Arbiter MDI MLP                  0.437
 ```
 The value between parenthesis is the predicted F1 
 Score for the respective aggregation method.
+
+## GUI Version
+To run the GUI version, just:
+```
+$ python3 app.py
+```
+
+Or, you can generate an executable with `pyinstaller`:
+```
+$ pyinstaller --windowed --clean --onefile app.spec
+```
+
+The executable will be created at `dist/`.
+
+### Troubleshooting
+I've had some trouble using newer versions of `joblib` (a Python library).
+I found out that the version which works the best with `pyinstaller` is `0.11.0`.
