@@ -7,7 +7,12 @@ a = Analysis(['app.py'],
              pathex=['/Users/bernardo/Documents/codelab/aggrm_predictor'],
              binaries=[],
              datas=[],
-             hiddenimports=['numpy.core._dtype_ctypes', 'sklearn.utils._cython_blas'],
+             hiddenimports=['numpy.core._dtype_ctypes',
+                            'sklearn.utils._cython_blas',
+                            'sklearn.tree',
+                            'sklearn.neighbors.typedefs',
+                            'sklearn.neighbors.quad_tree',
+                            'sklearn.tree._utils'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -36,6 +41,9 @@ exe = EXE(pyz,
           console=False )
 
 app = BUNDLE(exe,
-             name='app.app',
-             icon='img/icon.png',
-             bundle_identifier='com.bernardo.research.aggr_method.app')
+             name='AggrM Predictor.app',
+             icon='img/icon.ico',
+             bundle_identifier='com.bernardo.research.aggr_method.app',
+             info_plist={
+                'NSHighResolutionCapable': 'True'
+             },)
